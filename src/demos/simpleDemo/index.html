@@ -26,6 +26,8 @@
                 );
             },
             save: function(){
+                var newMsg = this.refs.newText.value;
+                console.log("New Comment = " + newMsg);
                 this.setState({editing: false});
             },
             renderNormal: function(){
@@ -39,7 +41,7 @@
             renderForm: function(){
                 return (
                     <div className='commentContainer'>
-                        <input type="textarea" defaultValue={this.props.children}/>
+                        <input ref="newText" type="textarea" defaultValue={this.props.children}/>
                         <button onClick={this.save} className="button-success">Save</button>
                     </div>);
             },
