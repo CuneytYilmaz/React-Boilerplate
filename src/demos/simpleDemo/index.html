@@ -14,23 +14,41 @@
 
     <script type="text/babel">
         var Comment = React.createClass({
+            getInitialState: function(){
+                return ({editing: false});
+            },
             edit: function(){
-                return(
-                    alert("Editing text...")
-                );
+                this.setState({editing: true});
             },
             remove: function(){
                 return(
                     alert("Removing text...")
                 );
             },
-            render: function() {
+            save: function(){
+                this.setState({editing: false});
+            },
+            renderNormal: function(){
                 return (
                     <div className='commentContainer'>
                         <div className='commentText'>{this.props.children}</div>
                         <button onClick={this.edit} className="button-primary">Edit</button>
                         <button onClick={this.remove} className="button-danger">Remove</button>
                     </div>);
+            },
+            renderForm: function(){
+                return (
+                    <div className='commentContainer'>
+                        <input type="textarea" defaultValue={this.props.children}/>
+                        <button onClick={this.save} className="button-success">Save</button>
+                    </div>);
+            },
+            render: function() {
+                if(this.state.editing){
+                    return this.renderForm();
+                }else {
+                    return this.renderNormal();
+                }
             }
         });
 
@@ -58,14 +76,14 @@
         });
 
         ReactDOM.render(
-                <CheckBox />, document.getElementById('container'));
-    </script>
-
-        <!-- ReactDOM.render(
             <div className="board">
                 <Comment> My name is Cüneyt! </Comment>
                 <Comment> React Text </Comment>
                 <Comment> Tuna </Comment>
-            </div>, document.getElementById('container')); -->
+            </div>, document.getElementById('container')); 
+    </script>
+
+        <!-- ReactDOM.render(
+                <CheckBox />, document.getElementById('container')); -->
 </body>
 </html>
