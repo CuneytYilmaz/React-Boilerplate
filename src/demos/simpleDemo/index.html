@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>React - Template</title>
+    <link rel="stylesheet" type="text/style" href="../../css/main.css">
     <script src="../../js/react.min.js"></script>
     <script src="../../js/react-dom.min.js"></script>
     <script src="../../js/browser.min.js"></script>
@@ -12,20 +13,31 @@
     <div id="example"></div>
 
     <script type="text/babel">
-        var MyComponent = React.createClass({
+        var Comment = React.createClass({
+            edit: function(){
+                return(
+                    alert("Editing text...")
+                );
+            },
+            remove: function(){
+                return(
+                    alert("Removing text...")
+                );
+            },
             render: function() {
                 return (
-                    <div>
-                        <h1>Hello World!</h1>
-                        <p>This is a paragraph.</p>
+                    <div className='commentContainer'>
+                        <div className='commentText'>{this.props.children}</div>
+                        <button onClick={this.edit} className="button-primary">Edit</button>
+                        <button onClick={this.remove} className="button-danger">Remove</button>
                     </div>);
             }
         });
         ReactDOM.render(
-            <div>
-                <MyComponent />
-                <MyComponent />
-                <MyComponent />
+            <div className="board">
+                <Comment> My name is Cüneyt! </Comment>
+                <Comment> React Text </Comment>
+                <Comment> Tuna </Comment>
             </div>, document.getElementById('example'));
     </script>
 
