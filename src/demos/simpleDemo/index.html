@@ -12,12 +12,21 @@
     <div id="example"></div>
 
     <script type="text/babel">
-        var MyTitle = React.createClass({
+        var MyComponent = React.createClass({
             render: function() {
-                return (<h1>Hello World!</h1>);
+                return (
+                    <div>
+                        <h1>Hello World!</h1>
+                        <p>This is a paragraph.</p>
+                    </div>);
             }
         });
-        ReactDOM.render(<MyTitle />, document.getElementById('example'));
+        ReactDOM.render(
+            <div>
+                <MyComponent />
+                <MyComponent />
+                <MyComponent />
+            </div>, document.getElementById('example'));
     </script>
 
 </body>
