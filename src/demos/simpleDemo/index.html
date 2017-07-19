@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>React - Template</title>
-    <link rel="stylesheet" type="text/style" href="../../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="../../js/react.min.js"></script>
     <script src="../../js/react-dom.min.js"></script>
     <script src="../../js/browser.min.js"></script>
 </head>
 <body>
-    <div id="example"></div>
+    <div id="container"></div>
 
     <script type="text/babel">
         var Comment = React.createClass({
@@ -33,13 +33,39 @@
                     </div>);
             }
         });
+
+        var CheckBox = React.createClass({
+            getInitialState: function(){
+                return{checked:true};
+            },
+            handleChecked: function(){
+                this.setState({checked: !this.state.checked});
+            },
+            render: function() {
+                var msg;
+                if (this.state.checked) {
+                    msg = 'checked';
+                }else {
+                    msg = 'unchecked';
+                }
+
+                return (
+                    <div>
+                        <input type="checkbox" onChange={this.handleChecked} defaultChecked={this.state.checked} />
+                        <h3>This checkbox is {msg}</h3>
+                    </div>);
+            }
+        });
+
         ReactDOM.render(
+                <CheckBox />, document.getElementById('container'));
+    </script>
+
+        <!-- ReactDOM.render(
             <div className="board">
                 <Comment> My name is Cüneyt! </Comment>
                 <Comment> React Text </Comment>
                 <Comment> Tuna </Comment>
-            </div>, document.getElementById('example'));
-    </script>
-
+            </div>, document.getElementById('container')); -->
 </body>
 </html>
