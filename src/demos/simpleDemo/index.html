@@ -9,10 +9,15 @@
     <script src="../../js/browser.min.js"></script>
 </head>
 <body>
-    <div id = "example"></div>
+    <div id="example"></div>
 
     <script type="text/babel">
-        ReactDOM.render(<h1>Hello World</h1>, document.getElementById('example'));
+        var MyTitle = React.createClass({
+            render: function() {
+                return (<h1>Hello World!</h1>);
+            }
+        });
+        ReactDOM.render(<MyTitle />, document.getElementById('example'));
     </script>
 
 </body>
