@@ -55,9 +55,6 @@
             getInitialState: function(){
                 return {
                     comments: [
-                        'My name is Cüneyt!',
-                        'React Text',
-                        'Tuna'
                     ]
                 }
             },
@@ -65,23 +62,31 @@
                 return (<Comment key={i} index={i} editingComment={this.editComment} removingComment={this.removeComment}>{text}</Comment>);
             },
             removeComment: function(i){
-                console.log("Removing comment : " + i);
                 var arr = this.state.comments;
                 arr.splice(i,1);
                 this.setState({comments: arr});
             },
             editComment: function(newText, i){
-                console.log("Updating comment");
                 var arr = this.state.comments;
                 arr[i] = newText;
                 this.setState({comments: arr});
             },
+            add:function(text){
+                var arr = this.state.comments;
+                arr.push(text);
+                this.setState({
+                    comment: arr
+                });
+            },
             render: function(){
                 return (
-                    <div className="board">
+                    <div>
+                        <button onClick={this.add.bind(null,"Enter text here..")} className="button-info create">Add new comment</button>
+                        <div className="board">
                         {
                             this.state.comments.map(this.eachComment)
                         }
+                    </div>
                     </div>
                 );
             }
