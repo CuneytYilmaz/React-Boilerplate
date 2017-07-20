@@ -54,6 +54,29 @@
             }
         });
 
+        var Board = React.createClass({
+            getInitialState: function(){
+                return {
+                    comments: [
+                        'My name is Cüneyt!',
+                        'React Text',
+                        'Tuna'
+                    ]
+                }
+            },
+            render: function(){
+                return (
+                    <div className="board">
+                        {
+                            this.state.comments.map(function (text,i){
+                            return (<Comment key={i}>{text}</Comment>);
+                            })
+                        }
+                    </div>
+                );
+            }
+        });
+
         var CheckBox = React.createClass({
             getInitialState: function(){
                 return{checked:true};
@@ -77,12 +100,7 @@
             }
         });
 
-        ReactDOM.render(
-            <div className="board">
-                <Comment> My name is Cüneyt! </Comment>
-                <Comment> React Text </Comment>
-                <Comment> Tuna </Comment>
-            </div>, document.getElementById('container')); 
+        ReactDOM.render(<Board />, document.getElementById('container')); 
     </script>
 
         <!-- ReactDOM.render(
