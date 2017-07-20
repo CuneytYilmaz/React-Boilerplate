@@ -64,13 +64,26 @@
                     ]
                 }
             },
+            eachComment: function (text,i){
+                return (<Comment key={i}>{text}</Comment>);
+            },
+            removeComment: function(i){
+                console.log("Removing comment : " + i);
+                var arr = this.state.comments;
+                arr.splice(i,1);
+                this.setState({comments: arr});
+            },
+            editComment: function(newText, i){
+                console.log("Updating comment");
+                var arr = this.state.comments;
+                arr[i] = newText;
+                this.setState({comments: arr});
+            },
             render: function(){
                 return (
                     <div className="board">
                         {
-                            this.state.comments.map(function (text,i){
-                            return (<Comment key={i}>{text}</Comment>);
-                            })
+                            this.state.comments.map(this.eachComment)
                         }
                     </div>
                 );
